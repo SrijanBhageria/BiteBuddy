@@ -9,7 +9,7 @@ function Signup() {
     geolocation: "",
   });
   
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();

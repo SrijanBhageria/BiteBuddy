@@ -20,7 +20,7 @@ export default function Cart() {
   if (data.length === 0) {
     return (
       <div className="container text-center mt-5">
-        <div className="alert alert-secondary fs-3 text-primary" role="alert">
+        <div className="alert alert-secondary fs-3 text-white" role="alert">
           The Cart is Empty!
         </div>
       </div>

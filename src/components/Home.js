@@ -132,7 +132,6 @@ function Home() {
                     <div key={filterItems._id} className="col-12 col-sm-6 col-lg-3 mb-4">
                       <Card foodItem = {filterItems}
                         options={filterItems.options[0]}
-                        
                       />
                     </div>
                   )

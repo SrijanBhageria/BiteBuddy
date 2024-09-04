@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatchCart, useCart } from "./ContextReducer";
+
 function Card(props) {
   
   let dispatch = useDispatchCart()
@@ -21,13 +22,11 @@ function Card(props) {
     }
     if (food.length !== 0) {
       if (food.size === size) {
-        console.log("Update food length_____________")
         await dispatch({ type: "UPDATE", id: props.foodItem._id, price: finalPrice, qty: qty })
         return
       }
       else if (food.size !== size) {
-        console.log("Update food length add -+_+_+_+_____________")
-        await dispatch({ type: "ADD", id: props.foodItem._id, name: props.foodItem.name, price: finalPrice, qty: qty, size: size,img: props.ImgSrc })
+        await dispatch({ type: "ADD", id: props.foodItem._id, name: props.foodItem.name, price: finalPrice, qty: qty, size: size})
         return
       }
       return
@@ -39,6 +38,7 @@ function Card(props) {
   // checkBtn();
   //   },[data])
   let finalPrice = qty * parseInt(options[size])
+  
   useEffect(()=>{
     setSize(priceRef.current.value)
   },[])
@@ -180,4 +180,5 @@ function Card(props) {
     </div>
   );
 }
+
 export default Card;
