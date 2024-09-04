@@ -8,7 +8,7 @@ require('dotenv').config();
 mongoDB();
 
 app.use(cors({
-  origin: '*', // Allows all origins
+  origin: ['https://bite-buddy-rosy.vercel.app'],
   methods: 'GET,POST,PUT,DELETE',
   allowedHeaders: 'Content-Type, Authorization'
 }));
