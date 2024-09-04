@@ -10,7 +10,7 @@ export default function Cart() {
   if (orderPlaced) {
     return (
       <div className="container text-center mt-5">
-        <div className="alert alert-success fs-3 text-primary" role="alert">
+        <div className="alert alert-success fs-3 text-black" role="alert">
           Order placed successfully!
         </div>
       </div>
