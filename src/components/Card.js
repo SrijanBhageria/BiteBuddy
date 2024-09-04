@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatchCart, useCart } from "./ContextReducer";
 function Card(props) {
+  
   let dispatch = useDispatchCart()
   let data = useCart()
   const priceRef = useRef()
   let options = props.options;
   let priceOptions = Object.keys(options);
+  
   const [qty, setQty] = useState(1)
   const[size,setSize] = useState('')
 
@@ -14,16 +16,17 @@ function Card(props) {
     for (const item of data) {
       if (item.id === props.foodItem._id) {
         food = item;
-
         break;
       }
     }
     if (food.length !== 0) {
       if (food.size === size) {
+        console.log("Update food length_____________")
         await dispatch({ type: "UPDATE", id: props.foodItem._id, price: finalPrice, qty: qty })
         return
       }
       else if (food.size !== size) {
+        console.log("Update food length add -+_+_+_+_____________")
         await dispatch({ type: "ADD", id: props.foodItem._id, name: props.foodItem.name, price: finalPrice, qty: qty, size: size,img: props.ImgSrc })
         return
       }
@@ -31,7 +34,6 @@ function Card(props) {
     }
     await dispatch({ type: "ADD", id: props.foodItem._id, name: props.foodItem.name, price: finalPrice, qty: qty, size: size })
     // setBtnEnable(true)
-
   }
   // useEffect(()=>{
   // checkBtn();
@@ -98,7 +100,7 @@ function Card(props) {
               lineHeight: "1.5",
             }}
           >
-            This is some important text.
+            Yumyyyy from BiteBuddy
           </p>
           <div
             className="d-flex align-items-center justify-content-between"
@@ -115,7 +117,7 @@ function Card(props) {
                 width: "30%",
               }}
             >
-              {Array.from(Array(6), (e, i) => (
+              {Array.from(Array(6), (_e,i) => (
                 <option key={i + 1} value={i + 1}>
                   {i + 1}
                 </option>

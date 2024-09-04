@@ -6,39 +6,42 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Layout";
 import Home from "./components/Home.js";
 import Login from "./components/Login";
-import "../node_modules/bootstrap-dark-5/dist/css/bootstrap-dark.min.css";
-import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
-import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 import Signup from "./components/Signup.js";
-import { CartProvider } from "./components/ContextReducer.js";
 import Cart from "./components/Cart.js";
-
-
+import { CartProvider } from "./components/ContextReducer.js";
+import "bootstrap-dark-5/dist/css/bootstrap-dark.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import MyOrder from "./components/MyOrder.js";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     children: [
-      {
-        path: "",
-        element: <Home />,
+      { 
+        path: "", 
+        element: <Home /> 
       },
-      {
-        path: "login",
-        element: <Login />,
+      { 
+        path: "login", 
+        element: <Login /> 
       },
-      {
-        path: "createuser",
-        element: <Signup />,
+      { 
+        path: "createuser", 
+        element: <Signup /> 
       },
-      {
-        path: "cart",
-        element: <Cart />
+      { 
+        path: "cart", 
+        element: <Cart /> 
+      },
+      { 
+        path: "myOrder", 
+        element: <MyOrder />
       },
     ],
   },
 ]);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

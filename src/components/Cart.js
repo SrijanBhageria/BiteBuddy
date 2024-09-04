@@ -1,17 +1,138 @@
-import React from 'react';
+// import React, { useState } from 'react';
+// import { useCart, useDispatchCart } from '../components/ContextReducer';
+// import { FaTrash } from 'react-icons/fa';
+
+// export default function Cart() {
+//   const [orderPlaced, setOrderPlaced] = useState(false); 
+//   const data = useCart();
+//   const dispatch = useDispatchCart();
+
+//   if (orderPlaced) {
+//     return (
+//       <div className="container text-center mt-5">
+//         <div className="alert alert-success fs-3 text-#0000FF" role="alert">
+//           Order placed successfully!
+//         </div>
+//       </div>
+//     );
+//   }
+
+//   if (data.length === 0) {
+//     return (
+//       <div className="container text-center mt-5">
+//         <div className="alert alert-secondary fs-3 text-#0000FF" role="alert">
+//           The Cart is Empty!
+//         </div>
+//       </div>
+//     );
+//   }
+
+//   const handleRemove = (index) => {
+//     dispatch({ type: "REMOVE", index });
+//   };
+
+//   const handleCheckOut = async () => {
+//     let userEmail = localStorage.getItem("userEmail");
+
+//     let response = await fetch("http://localhost:5000/api/orderData", {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({
+//         order_data: data,
+//         email: userEmail,
+//         order_date: new Date().toDateString()
+//       })
+//     });
+
+//     if (response.status === 200) {
+//       dispatch({ type: "DROP" });
+//       setOrderPlaced(true); 
+//     } else {
+//       console.error("Failed to place order:", response.status);
+//     }
+//   };
+
+//   const totalPrice = data.reduce((total, food) => total + food.price, 0);
+
+//   return (
+//     <div className="container my-5">
+//       <div className="table-responsive">
+//         <table className="table table-hover table-striped">
+//           <thead className="table-primary text-#293241">
+//             <tr>
+//               <th scope="col">#</th>
+//               <th scope="col">Name</th>
+//               <th scope="col">Quantity</th>
+//               <th scope="col">Option</th>
+//               <th scope="col">Amount</th>
+//               <th scope="col"></th>
+//             </tr>
+//           </thead>
+//           <tbody>
+//             {data.map((food, index) => (
+//               <tr key={food.id}>
+//                 <th scope="row">{index + 1}</th>
+//                 <td>{food.name}</td>
+//                 <td>{food.qty}</td>
+//                 <td>{food.size}</td>
+//                 <td>₹{food.price}</td>
+//                 <td>
+//                   <button
+//                     type="button"
+//                     className="btn p-0"
+//                     onClick={() => handleRemove(index)}
+//                     style={{ border: 'none', background: 'transparent', cursor: 'pointer', color: '#dc3545' }}
+//                   >
+//                     <FaTrash size={20} />
+//                   </button>
+//                 </td>
+//               </tr>
+//             ))}
+//           </tbody>
+//         </table>
+//       </div>
+//       <div className="text-center my-4 text-#0000FF">
+//         <h1 className="fs-2">Total Price: ₹{totalPrice}/-</h1>
+//         <button className="btn btn-success mt-3" onClick={handleCheckOut}>Check Out</button>
+//       </div>
+//     </div>
+//   );
+// }
+
+import React, { useState } from 'react';
 import { useCart, useDispatchCart } from '../components/ContextReducer';
+import { FaTrash } from 'react-icons/fa';
 
 export default function Cart() {
-  let data = useCart();
-  let dispatch = useDispatchCart();
+  const [orderPlaced, setOrderPlaced] = useState(false); 
+  const data = useCart();
+  const dispatch = useDispatchCart();
 
-  if (data.length === 0) {
+  if (orderPlaced) {
     return (
-      <div style={{ textAlign: 'center', marginTop: '5rem' }}>
-        <div style={{ fontSize: '1.5rem', color: '#000' }}>The Cart is Empty!</div>
+      <div className="container text-center mt-5">
+        <div className="alert alert-success fs-3 text-primary" role="alert">
+          Order placed successfully!
+        </div>
       </div>
     );
   }
+
+  if (data.length === 0) {
+    return (
+      <div className="container text-center mt-5">
+        <div className="alert alert-secondary fs-3 text-primary" role="alert">
+          The Cart is Empty!
+        </div>
+      </div>
+    );
+  }
+
+  const handleRemove = (index) => {
+    dispatch({ type: "REMOVE", index });
+  };
 
   const handleCheckOut = async () => {
     let userEmail = localStorage.getItem("userEmail");
@@ -30,57 +151,54 @@ export default function Cart() {
 
     if (response.status === 200) {
       dispatch({ type: "DROP" });
+      setOrderPlaced(true); 
     } else {
       console.error("Failed to place order:", response.status);
     }
   };
 
-  let totalPrice = data.reduce((total, food) => total + food.price, 0);
+  const totalPrice = data.reduce((total, food) => total + food.price, 0);
 
   return (
-    <div style={{ backgroundColor: '#f4f4f4', padding: '2rem', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
-      <div className='container m-auto mt-5 table-responsive table-responsive-sm table-responsive-md'>
-        <table className='table table-hover' style={{ backgroundColor: '#fff', borderRadius: '8px', overflow: 'hidden' }}>
-          <thead style={{ backgroundColor: '#e0e0e0', color: '#000' }}>
+    <div className="container my-5">
+      <div className="table-responsive">
+        <table className="table table-hover table-striped">
+          <thead className="table-primary text-primary">
             <tr>
-              <th scope='col'>#</th>
-              <th scope='col'>Name</th>
-              <th scope='col'>Quantity</th>
-              <th scope='col'>Option</th>
-              <th scope='col'>Amount</th>
-              <th scope='col'></th>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Option</th>
+              <th scope="col">Amount</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
             {data.map((food, index) => (
-              <tr key={index} style={{ backgroundColor: index % 2 === 0 ? '#fafafa' : '#fff' }}>
-                <th scope='row' style={{ color: '#000' }}>{index + 1}</th>
-                <td style={{ color: '#000' }}>{food.name}</td>
-                <td style={{ color: '#000' }}>{food.qty}</td>
-                <td style={{ color: '#000' }}>{food.size}</td>
-                <td style={{ color: '#000' }}>{food.price}</td>
+              <tr key={food.id}>
+                <th scope="row">{index + 1}</th>
+                <td className="text-primary">{food.name}</td>
+                <td className="text-primary">{food.qty}</td>
+                <td className="text-primary">{food.size}</td>
+                <td className="text-primary">₹{food.price}</td>
                 <td>
                   <button
                     type="button"
-                    className="btn btn-danger btn-sm"
-                    onClick={() => dispatch({ type: "REMOVE", index })}
-                    style={{ borderRadius: '20px', backgroundColor: '#dc3545', border: 'none', color: '#fff', padding: '0.25rem 0.75rem' }}
+                    className="btn p-0"
+                    onClick={() => handleRemove(index)}
+                    style={{ border: 'none', background: 'transparent', cursor: 'pointer', color: '#dc3545' }}
                   >
-                    Delete
+                    <FaTrash size={20} />
                   </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-        <div style={{ marginTop: '1rem' }}>
-          <h1 className='fs-2' style={{ color: '#000' }}>Total Price: {totalPrice}/-</h1>
-        </div>
-        <div style={{ marginTop: '2rem', textAlign: 'center' }}>
-          <button className='btn' onClick={handleCheckOut} style={{ backgroundColor: '#28a745', color: '#fff', borderRadius: '20px', padding: '0.5rem 2rem', fontSize: '1rem', border: 'none' }}>
-            Check Out
-          </button>
-        </div>
+      </div>
+      <div className="text-center my-4 text-primary">
+        <h1 className="fs-2">Total Price: ₹{totalPrice}/-</h1>
+        <button className="btn btn-success mt-3" onClick={handleCheckOut}>Check Out</button>
       </div>
     </div>
   );

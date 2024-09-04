@@ -18,11 +18,16 @@ const mongoURI =
       // Fetch food categories
       const foodCategoryCollection = db.collection("foodCategory");
       const catData = await foodCategoryCollection.find({}).toArray();
+
+      // Fetch orders
+      const ordersCollection = db.collection("orders");
+      const ordersData = await ordersCollection.find({}).toArray();
   
       // Assign to global variables
       global.food_items = data;
       global.foodCategory = catData;
-  
+      global.orders = ordersData;
+
       console.log("Data fetched and stored globally");
     } catch (err) {
       console.error("MongoDB connection or data fetching error:", err);

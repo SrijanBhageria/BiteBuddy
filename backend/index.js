@@ -3,12 +3,12 @@ const cors = require('cors');
 const app = express();
 const port = 5000;
 const mongoDB = require("./db");
+require('dotenv').config();
 
 mongoDB();
 
-// Use CORS middleware
 app.use(cors({
-  origin: 'http://localhost:3000', // your frontend URL
+  origin: 'http://localhost:3000', 
   methods: 'GET,POST,PUT,DELETE',
   allowedHeaders: 'Content-Type, Authorization'
 }));
@@ -18,7 +18,8 @@ app.use(express.json());
 // Route setup
 app.use('/api', require('./Routes/CreateUser'));
 app.use('/api', require('./Routes/DisplayData'));
-app.use('/api', require('./Routes/OrderData')); // Ensure this matches
+app.use('/api', require('./Routes/OrderData')); 
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
   res.send('Hello World! -----');

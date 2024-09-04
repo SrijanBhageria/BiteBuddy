@@ -85,6 +85,26 @@ function Navbar() {
               >
                 Home
               </NavLink>
+              <NavLink
+                  to="/myOrder"
+                  className="nav-link"
+                  style={{fontSize: "1rem",
+                    fontWeight: "700",
+                    letterSpacing: "2px",
+                    textTransform: "uppercase",
+                    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+                    transition: "color 0.3s ease, transform 0.3s ease",
+                    display: "inline-block",
+                }}
+                onMouseEnter={(e) => {
+                    e.target.style.color = "#008080";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.color = "#ffffff";
+                  }}
+                >
+                  My Orders
+                </NavLink>
             </li>
           </ul>
           <ul className="navbar-nav ms-auto">
@@ -112,6 +132,7 @@ function Navbar() {
                   My Cart 
                   <Badge pill bg='danger'>{data.length}</Badge>
                 </NavLink>
+                
                 {cartView && (
                   <Modal onClose={() => setCartView(false)}>
                     <Cart />

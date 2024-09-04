@@ -48,9 +48,9 @@ function Home() {
                   fontSize: "1rem",
                   background: "rgba(255, 255, 255, 0.8)",
                   border: "1px solid #ccc",
-                  color: "#000", // Text inside the search bar is black
-                  width: "100%", // Full width on smaller screens
-                  maxWidth: "600px", // Max width to prevent stretching
+                  color: "#000", 
+                  width: "100%", 
+                  maxWidth: "600px",
                 }}
               />
             </div>
