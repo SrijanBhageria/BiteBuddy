@@ -8,11 +8,10 @@ require('dotenv').config();
 mongoDB();
 
 app.use(cors({
-  origin: true, 
+  origin: '*', // Allows all origins
   methods: 'GET,POST,PUT,DELETE',
   allowedHeaders: 'Content-Type, Authorization'
 }));
-
 app.use(express.json());
 
 // Route setup
